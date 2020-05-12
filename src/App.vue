@@ -11,17 +11,19 @@
       </nav>
     </header>
     <main>
-      <HomePage />
+      <RobotBuilder />
     </main>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HomePage from "./components/HomePage.vue";
+import HomePage from "./home/HomePage.vue";
+import RobotBuilder from "./build/RobotBuilder.vue";
 
 @Component({
   components: {
+    RobotBuilder,
     HomePage
   }
 })
