@@ -96,7 +96,7 @@ export default class RobotBuilder extends Vue {
   selectedRightArmIndex = 0;
   selectedBaseIndex = 0;
 
-  addToCard() {
+  addToCart() {
     const robot = this.selectedRobot;
     const cost =
       robot.head.cost +
@@ -105,14 +105,6 @@ export default class RobotBuilder extends Vue {
       robot.rightArm.cost +
       robot.base.cost;
     this.cart.push(Object.assign({}, robot, { cost }));
-    console.log("**** cart value ****", this.cart);
-    console.log(
-      "alternate cart value *****",
-      this.cart.push({
-        ...robot,
-        cost
-      })
-    );
   }
 
   selectNextHead() {

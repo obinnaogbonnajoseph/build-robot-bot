@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HomePage from "./home/HomePage.vue";
-import RobotBuilder from "./build/RobotBuilder.vue";
+import RobotBuilder from "./robot-build/RobotBuilder.vue";
 
 @Component({
   components: {
