@@ -73,8 +73,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import availableParts from "../data/parts";
+import createdHookMixin from "./created-hook-mixin";
 
 const getPreviousValidIndex = (index: number, length: number) => {
   const deprecatedIndex = index - 1;
@@ -88,7 +89,7 @@ const getNextValidIndex = (index: number, length: number) => {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 @Component
-export default class RobotBuilder extends Vue {
+export default class RobotBuilder extends Mixins(createdHookMixin) {
   cart: any[] = [];
   selectedHeadIndex = 0;
   selectedLeftArmIndex = 0;
