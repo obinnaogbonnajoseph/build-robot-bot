@@ -1,6 +1,16 @@
 <template>
   <div class="part" :class="position">
-    <img :src="selectedPart.src" title="arm" />
+    <router-link
+      :to="{
+        name: 'Parts',
+        params: {
+          id: this.selectedPart.id,
+          partype: this.selectedPart.type
+        }
+      }"
+    >
+      <img :src="selectedPart.src" title="arm" />
+    </router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
     <span class="sale" v-show="selectedPart.onSale">Sale!</span>

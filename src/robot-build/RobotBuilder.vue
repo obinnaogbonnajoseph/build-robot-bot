@@ -92,6 +92,8 @@ export default class RobotBuilder extends Mixins(createdHookMixin) {
 
   availableParts: any = parts;
 
+  addedToCart = false;
+
   selectedRobot: any = {
     head: {},
     leftArm: {},
@@ -109,18 +111,31 @@ export default class RobotBuilder extends Mixins(createdHookMixin) {
       robot.rightArm.cost +
       robot.base.cost;
     this.cart.push(Object.assign({}, robot, { cost }));
+    this.addedToCart = true;
   }
 
-  saleBorderClass() {
+  get saleBorderClass() {
     return this.selectedRobot.head.onSale ? "sale-border" : "";
   }
 
-  headBorderStyle() {
+  get headBorderStyle() {
     return {
       border: this.selectedRobot.head.onSale
         ? "3px solid red"
         : "3px solid #aaa"
     };
+  }
+
+  beforeRouteLeave(to: any, from: any, next: any) {
+    console.log("***** before route leave called *****");
+    if (this.addedToCart) {
+      next(true);
+    } else {
+      const response = confirm(
+        "You have not added your robot to your cart, are you sure you want to leave?"
+      );
+      next(response);
+    }
   }
 }
 </script>
