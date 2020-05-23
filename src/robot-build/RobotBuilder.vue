@@ -80,6 +80,8 @@ import PartSelector from "./PartSelector.vue";
 import CollapsibleSection from "../shared/CollapsibleSection.vue";
 import createdHookMixin from "./created-hook-mixin";
 
+Component.registerHooks(["beforeRouteLeave"]);
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 @Component({
   components: {
@@ -114,6 +116,20 @@ export default class RobotBuilder extends Mixins(createdHookMixin) {
     this.addedToCart = true;
   }
 
+  beforeRouteLeave(to: any, from: any, next: any) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (this.addedToCart) {
+      next();
+    } else {
+      const response = confirm(
+        "You have not added your robot to your cart, are you sure you want to leave?"
+      );
+      if (response) {
+        next();
+      }
+    }
+  }
+
   get saleBorderClass() {
     return this.selectedRobot.head.onSale ? "sale-border" : "";
   }
@@ -124,18 +140,6 @@ export default class RobotBuilder extends Mixins(createdHookMixin) {
         ? "3px solid red"
         : "3px solid #aaa"
     };
-  }
-
-  beforeRouteLeave(to: any, from: any, next: any) {
-    console.log("***** before route leave called *****");
-    if (this.addedToCart) {
-      next(true);
-    } else {
-      const response = confirm(
-        "You have not added your robot to your cart, are you sure you want to leave?"
-      );
-      next(response);
-    }
   }
 }
 </script>

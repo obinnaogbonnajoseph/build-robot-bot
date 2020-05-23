@@ -8,6 +8,7 @@
           partype: this.selectedPart.type
         }
       }"
+      exact
     >
       <img :src="selectedPart.src" title="arm" />
     </router-link>

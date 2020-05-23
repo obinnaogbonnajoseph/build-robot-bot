@@ -58,7 +58,7 @@ export default new Router({
               }],
           },
           {
-            path: '/parts/:partType/:id',
+            path: '/parts/:partype/:id',
             name: 'Parts',
             component: PartInfo,
             props: true,
